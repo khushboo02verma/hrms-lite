@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+const API_URL = "https://hrms-backend-ulon.onrender.com/"; 
 
 function App() {
   const [employees, setEmployees] = useState([]);
@@ -11,7 +12,7 @@ function App() {
   const [status, setStatus] = useState('Present');
 
   const getEmps = () => {
-    axios.get("http://localhost:8000/employees")
+    axios.get(`${API_URL}/employees`)
       .then(res => setEmployees(res.data))
       .catch(err => console.log("Server error!"));
   };
@@ -20,7 +21,7 @@ function App() {
 
   const addEmp = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8000/employees", { id, name, email, department: dept })
+    axios.post(`${API_URL}/employees`, { id, name, email, department: dept })
       .then(() => {
         alert("Employee Added!");
         setId(''); setName(''); setEmail(''); setDept('');
@@ -31,14 +32,14 @@ function App() {
 
   const deleteEmp = (empId) => {
     if(window.confirm("Delete this employee?")) {
-      axios.delete(`http://localhost:8000/employees/${empId}`)
+      axios.delete(`${API_URL}/employees/${empId}`)
         .then(() => getEmps());
     }
   };
 
   const markAttendance = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8000/attendance", { 
+    axios.post(`${API_URL}/employees`, { 
       emp_id: selectedEmp, 
       date: new Date().toISOString().split('T')[0], 
       status: status 
