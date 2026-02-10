@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRMS Lite - Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            min-height: 100vh;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        button {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HRMS Lite - Admin Dashboard</h1>
+        
+        <form id="addEmpForm">
+            <input type="text" id="id" placeholder="ID" required />
+            <input type="text" id="name" placeholder="Name" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="text" id="dept" placeholder="Dept" required />
+            <button type="submit">Add</button>
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Dept</th>
+                </tr>
+            </thead>
+            <tbody id="empTable">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const form = document.getElementById('addEmpForm');
+        const empTable = document.getElementById('empTable');
+
+        const getEmps = () => {
+            axios.get("http://localhost:8000/employees")
+                .then(res => {
+                    empTable.innerHTML = '';
+                    res.data.forEach(e => {
+                        const row = `<tr><td>${e.id}</td><td>${e.name}</td><td>${e.email}</td><td>${e.department}</td></tr>`;
+                        empTable.innerHTML += row;
+                    });
+                })
+                .catch(err => console.log("Server error!"));
+        };
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('id').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const dept = document.getElementById('dept').value;
+
+            axios.post("http://localhost:8000/employees", { id, name, email, department: dept })
+                .then(() => {
+                    alert("Success!");
+                    form.reset();
+                    getEmps();
+                })
+                .catch(err => alert("Error: " + err.response.data.detail));
+        });
+
+        getEmps();
+    </script>
+</body>
+</html>
