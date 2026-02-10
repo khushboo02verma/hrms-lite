@@ -10,1164 +10,137 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        :root {
-            --bg: #0f172a;
-            --bg-soft: #111827;
-            --bg-card: #020617;
-            --accent: #6366f1;
-            --accent-soft: rgba(99, 102, 241, 0.15);
-            --accent-strong: #4f46e5;
-            --text: #e5e7eb;
-            --text-soft: #9ca3af;
-            --danger: #ef4444;
-        }
-
+        
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top left, #1d4ed8 0, #020617 40%, #000 100%);
-            color: var(--text);
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
             min-height: 100vh;
+        }
+        
+        .container {
+            padding: 20px;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        form {
             display: flex;
-        }
-
-        .layout {
-            display: grid;
-            grid-template-columns: 260px minmax(0, 1fr);
-            width: 100%;
-            min-height: 100vh;
-            backdrop-filter: blur(24px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.99));
-            border-right: 1px solid rgba(148, 163, 184, 0.2);
-            padding: 24px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            background: conic-gradient(from 180deg, #4f46e5, #22c55e, #06b6d4, #4f46e5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.3), 0 10px 40px rgba(15, 23, 42, 0.9);
-        }
-
-        .logo-inner {
-            width: 24px;
-            height: 24px;
-            border-radius: 10px;
-            background: radial-gradient(circle at 30% 30%, #e5e7eb, #1f2937);
-        }
-
-        .brand-text {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .brand-title {
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            font-size: 1.05rem;
-        }
-
-        .brand-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-soft);
-        }
-
-        .nav {
-            margin-top: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .nav-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-soft);
-            margin-bottom: 6px;
-        }
-
-        .nav-button {
-            width: 100%;
-            display: flex;
-            align-items: center;
             gap: 10px;
-            padding: 9px 11px;
-            border-radius: 999px;
-            border: 1px solid transparent;
-            background: transparent;
-            color: var(--text-soft);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.18s ease-out;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
-
-        .nav-button span.icon {
-            width: 26px;
-            height: 26px;
-            border-radius: 999px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            background: rgba(15, 23, 42, 0.9);
+        
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
         }
-
-        .nav-button span.label {
-            flex: 1;
-            text-align: left;
-        }
-
-        .nav-button:hover {
-            background: rgba(15, 23, 42, 0.9);
-            color: var(--text);
-            border-color: rgba(148, 163, 184, 0.5);
-            transform: translateY(-1px);
-        }
-
-        .nav-button.active {
-            background: linear-gradient(90deg, rgba(99, 102, 241, 0.14), rgba(37, 99, 235, 0.06));
-            border-color: rgba(129, 140, 248, 0.9);
-            color: #eef2ff;
-            box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.4), 0 12px 30px rgba(15, 23, 42, 0.9);
-        }
-
-        .nav-button.active span.icon {
-            background: radial-gradient(circle at 30% 20%, #a5b4fc, #4f46e5);
-            color: #020617;
-        }
-
-        .sidebar-footer {
-            margin-top: auto;
-            font-size: 0.75rem;
-            color: var(--text-soft);
-            opacity: 0.8;
-        }
-
-        .sidebar-footer strong {
-            color: #e5e7eb;
-        }
-
-        /* Main area */
-        .main {
-            background: radial-gradient(circle at top, rgba(59, 130, 246, 0.3), transparent 55%),
-                        radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.25), transparent 50%),
-                        #020617;
-            padding: 22px 26px;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-
-        .topbar-left {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .page-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-        }
-
-        .page-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-soft);
-        }
-
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .badge-pill {
-            padding: 5px 10px;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            border: 1px solid rgba(148, 163, 184, 0.4);
-            color: var(--text-soft);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .pill-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
-        }
-
-        .main-scroll {
-            margin-top: 6px;
-            flex: 1;
-            min-height: 0;
-            overflow: auto;
-            padding-right: 2px;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.1fr);
-            gap: 18px;
-            align-items: flex-start;
-        }
-
-        .card {
-            background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.25), transparent 55%),
-                        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.7), #020617);
-            border-radius: 18px;
-            border: 1px solid rgba(148, 163, 184, 0.35);
-            padding: 16px 16px 14px;
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.95);
-        }
-
-        .card + .card {
-            margin-top: 12px;
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .card-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            color: #e5e7eb;
-        }
-
-        .card-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-soft);
-        }
-
-        .chip {
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 0.7rem;
-            border: 1px solid rgba(148, 163, 184, 0.5);
-            color: var(--text-soft);
-        }
-
-        .metrics-row {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            margin-top: 4px;
-        }
-
-        .metric {
-            padding: 11px 10px 10px;
-            border-radius: 14px;
-            background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), #020617);
-            border: 1px solid rgba(148, 163, 184, 0.4);
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .metric-label {
-            font-size: 0.72rem;
-            color: var(--text-soft);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .metric-value {
-            font-size: 1.15rem;
-            font-weight: 600;
-        }
-
-        .metric-pill {
-            font-size: 0.74rem;
-            color: #bbf7d0;
-        }
-
-        /* Forms */
-        .form-grid-two {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-        }
-
-        .form-grid-one {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 10px;
-        }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .field-label {
-            font-size: 0.8rem;
-            color: var(--text-soft);
-        }
-
-        .field-label span {
-            color: #f97316;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 9px 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            background: rgba(15, 23, 42, 0.9);
-            color: var(--text);
-            font-size: 0.88rem;
+        
+        input:focus {
             outline: none;
-            transition: all 0.16s ease-out;
+            border-color: #007bff;
         }
-
-        input::placeholder {
-            color: rgba(148, 163, 184, 0.7);
-        }
-
-        input:focus, select:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.8);
-        }
-
-        select {
-            cursor: pointer;
-        }
-
-        .actions-row {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border-radius: 999px;
+        
+        button {
             padding: 8px 16px;
-            font-size: 0.85rem;
-            border: 1px solid transparent;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.16s ease-out;
-            background: rgba(15, 23, 42, 0.9);
-            color: var(--text);
+            font-size: 14px;
         }
-
-        .btn-primary {
-            background: linear-gradient(120deg, #4f46e5, #22c55e);
-            border-color: rgba(129, 140, 248, 0.9);
-            color: #f9fafb;
-            box-shadow: 0 14px 30px rgba(15, 23, 42, 1);
+        
+        button:hover {
+            background-color: #0056b3;
         }
-
-        .btn-primary:hover {
-            filter: brightness(1.05);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            border-color: rgba(148, 163, 184, 0.7);
-            background: rgba(15, 23, 42, 0.9);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(15, 23, 42, 1);
-        }
-
-        .btn-danger {
-            border-color: rgba(248, 113, 113, 0.9);
-            color: #fecaca;
-            background: radial-gradient(circle at top, rgba(248, 113, 113, 0.13), rgba(15, 23, 42, 0.98));
-        }
-
-        .btn-danger:hover {
-            border-color: rgba(248, 113, 113, 1);
-            color: #fee2e2;
-            background: radial-gradient(circle at top, rgba(248, 113, 113, 0.2), rgba(15, 23, 42, 0.98));
-        }
-
-        /* Tables */
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.83rem;
-            margin-top: 4px;
+            margin-top: 10px;
         }
-
-        thead {
-            background: linear-gradient(90deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
-        }
-
-        thead th {
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
             text-align: left;
-            padding: 8px 10px;
-            font-weight: 500;
-            color: var(--text-soft);
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
-            font-size: 0.7rem;
         }
-
-        tbody tr:nth-child(odd) {
-            background: rgba(15, 23, 42, 0.9);
+        
+        table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
         }
-
-        tbody tr:nth-child(even) {
-            background: rgba(15, 23, 42, 0.85);
-        }
-
-        tbody td {
-            padding: 8px 10px;
-            border-top: 1px solid rgba(15, 23, 42, 0.9);
-            border-bottom: 1px solid rgba(15, 23, 42, 0.9);
-        }
-
-        tbody tr:hover {
-            background: rgba(30, 64, 175, 0.7);
-        }
-
-        .table-empty {
-            text-align: center;
-            padding: 16px 0;
-            color: var(--text-soft);
-        }
-
-        .status-pill {
-            padding: 3px 8px;
-            border-radius: 999px;
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
-
-        .status-present {
-            background: rgba(22, 163, 74, 0.18);
-            color: #bbf7d0;
-        }
-
-        .status-absent {
-            background: rgba(248, 113, 113, 0.2);
-            color: #fecaca;
-        }
-
-        /* Sections */
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .section-header {
-            margin-bottom: 8px;
-        }
-
-        .section-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-        }
-
-        .section-description {
-            font-size: 0.85rem;
-            color: var(--text-soft);
-        }
-
-        .section-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .muted {
-            color: var(--text-soft);
-            font-size: 0.8rem;
-        }
-
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            border-radius: 999px;
-            padding: 4px 10px;
-            font-size: 0.7rem;
-            border: 1px solid rgba(148, 163, 184, 0.5);
-            color: var(--text-soft);
-        }
-
-        .pill-bullet {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: rgba(148, 163, 184, 0.8);
-        }
-
-        @media (max-width: 900px) {
-            .layout {
-                grid-template-columns: 72px minmax(0, 1fr);
-            }
-
-            .brand-text,
-            .nav-label,
-            .nav-button span.label,
-            .sidebar-footer {
-                display: none;
-            }
-
-            .nav-button {
-                justify-content: center;
-            }
-
-            .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-            }
-
-            .content-grid {
-                grid-template-columns: minmax(0, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .main {
-                padding: 18px 16px;
-            }
-
-            .card {
-                padding: 14px 12px;
-            }
-
-            .metrics-row {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .form-grid-two {
-                grid-template-columns: minmax(0, 1fr);
-            }
-
-            .actions-row {
-                justify-content: stretch;
-            }
-
-            .btn {
-                flex: 1;
-            }
+        
+        table tbody tr:hover {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
 <body>
-    <div class="layout">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="brand">
-                <div class="logo-circle">
-                    <div class="logo-inner"></div>
-                </div>
-                <div class="brand-text">
-                    <div class="brand-title">HRMS Lite</div>
-                    <div class="brand-subtitle">Admin workspace</div>
-                </div>
-            </div>
+    <div class="container">
+        <h1>HRMS Lite - Admin Dashboard</h1>
+        
+        <form id="addEmpForm">
+            <input type="text" id="id" placeholder="ID" required />
+            <input type="text" id="name" placeholder="Name" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="text" id="dept" placeholder="Dept" required />
+            <button type="submit">Add</button>
+        </form>
 
-            <div>
-                <div class="nav-label">Overview</div>
-                <nav class="nav">
-                    <button class="nav-button active" data-page="dashboard">
-                        <span class="icon">🏠</span>
-                        <span class="label">Dashboard</span>
-                    </button>
-                    <button class="nav-button" data-page="employees">
-                        <span class="icon">👥</span>
-                        <span class="label">Employees</span>
-                    </button>
-                    <button class="nav-button" data-page="attendance">
-                        <span class="icon">📅</span>
-                        <span class="label">Attendance</span>
-                    </button>
-                </nav>
-            </div>
-
-            <div class="sidebar-footer">
-                <div>Signed in as <strong>Admin</strong></div>
-                <div style="margin-top: 4px;">Manage people, presence, and productivity in one place.</div>
-            </div>
-        </aside>
-
-        <!-- Main content -->
-        <main class="main">
-            <header class="topbar">
-                <div class="topbar-left">
-                    <div class="page-title" id="pageTitle">Dashboard</div>
-                    <div class="page-subtitle" id="pageSubtitle">Snapshot of your workforce today.</div>
-                </div>
-                <div class="topbar-right">
-                    <div class="badge-pill">
-                        <span class="pill-dot"></span>
-                        Backend connected
-                    </div>
-                </div>
-            </header>
-
-            <div class="main-scroll">
-                <!-- Dashboard -->
-                <section id="dashboardSection" class="section active">
-                    <div class="content-grid">
-                        <div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <div>
-                                        <div class="card-title">Team Overview</div>
-                                        <div class="card-subtitle">Live snapshot of your HR data.</div>
-                                    </div>
-                                    <div class="chip">HRMS · Realtime</div>
-                                </div>
-                                <div class="metrics-row">
-                                    <div class="metric">
-                                        <div class="metric-label">Total employees</div>
-                                        <div class="metric-value" id="metricEmployees">–</div>
-                                        <div class="metric-pill">Active headcount</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-label">Departments</div>
-                                        <div class="metric-value" id="metricDepartments">–</div>
-                                        <div class="metric-pill">Unique teams</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-label">Today</div>
-                                        <div class="metric-value" id="metricTodayDate">–</div>
-                                        <div class="metric-pill">Mark attendance from the tab</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header">
-                                    <div>
-                                        <div class="card-title">Recently added employees</div>
-                                        <div class="card-subtitle">Latest records in your directory.</div>
-                                    </div>
-                                </div>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 18%;">ID</th>
-                                            <th style="width: 32%;">Name</th>
-                                            <th style="width: 30%;">Email</th>
-                                            <th style="width: 20%;">Department</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="recentEmployeesBody">
-                                        <tr>
-                                            <td colspan="4" class="table-empty">No employees yet. Add your first team member from the Employees tab.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <div>
-                                        <div class="card-title">Quick actions</div>
-                                        <div class="card-subtitle">Most-used admin workflows.</div>
-                                    </div>
-                                </div>
-                                <div class="section-stack">
-                                    <button class="btn btn-primary" id="quickAddEmployee">
-                                        <span>➕</span>
-                                        <span>Add a new employee</span>
-                                    </button>
-                                    <button class="btn btn-secondary" id="quickMarkAttendance">
-                                        <span>✅</span>
-                                        <span>Mark today’s attendance</span>
-                                    </button>
-                                    <div class="muted">
-                                        Tip: you can keep this tab open next to your HRMS backend; everything updates in real-time as you add records.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Employees -->
-                <section id="employeesSection" class="section">
-                    <div class="section-header">
-                        <div class="section-title">Employees directory</div>
-                        <div class="section-description">Add, review and manage your employee master data.</div>
-                    </div>
-
-                    <div class="section-stack">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title">Add employee</div>
-                                    <div class="card-subtitle">Unique ID and email are required to avoid duplicates.</div>
-                                </div>
-                            </div>
-                            <form id="addEmpForm">
-                                <div class="form-grid-two">
-                                    <div class="field">
-                                        <label class="field-label" for="id">Employee ID <span>*</span></label>
-                                        <input type="text" id="id" placeholder="e.g. EMP-001" required />
-                                    </div>
-                                    <div class="field">
-                                        <label class="field-label" for="name">Full name <span>*</span></label>
-                                        <input type="text" id="name" placeholder="Enter full legal name" required />
-                                    </div>
-                                </div>
-                                <div class="form-grid-two" style="margin-top: 10px;">
-                                    <div class="field">
-                                        <label class="field-label" for="email">Work email <span>*</span></label>
-                                        <input type="email" id="email" placeholder="name@company.com" required />
-                                    </div>
-                                    <div class="field">
-                                        <label class="field-label" for="dept">Department <span>*</span></label>
-                                        <input type="text" id="dept" placeholder="e.g. Engineering, HR, Finance" required />
-                                    </div>
-                                </div>
-                                <div class="actions-row">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span>Save employee</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title">Employee records</div>
-                                    <div class="card-subtitle">
-                                        All employees stored in your HRMS database.
-                                    </div>
-                                </div>
-                                <div class="tag">
-                                    <span class="pill-bullet"></span>
-                                    <span id="employeeCountTag">0 employees</span>
-                                </div>
-                            </div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th style="width: 14%;">ID</th>
-                                        <th style="width: 24%;">Name</th>
-                                        <th style="width: 26%;">Email</th>
-                                        <th style="width: 20%;">Department</th>
-                                        <th style="width: 16%;">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="empTable">
-                                    <tr>
-                                        <td colspan="5" class="table-empty">Loading employees…</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Attendance -->
-                <section id="attendanceSection" class="section">
-                    <div class="section-header">
-                        <div class="section-title">Attendance</div>
-                        <div class="section-description">Mark daily presence and review history for each employee.</div>
-                    </div>
-
-                    <div class="section-stack">
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title">Mark attendance</div>
-                                    <div class="card-subtitle">Select an employee and capture their status for a specific date.</div>
-                                </div>
-                            </div>
-
-                            <form id="attendanceForm">
-                                <div class="form-grid-two">
-                                    <div class="field">
-                                        <label class="field-label" for="attendanceEmp">Employee <span>*</span></label>
-                                        <select id="attendanceEmp" required>
-                                            <option value="">Select employee</option>
-                                        </select>
-                                    </div>
-                                    <div class="field">
-                                        <label class="field-label" for="attendanceDate">Date <span>*</span></label>
-                                        <input type="date" id="attendanceDate" required />
-                                    </div>
-                                </div>
-                                <div class="form-grid-one" style="margin-top: 10px;">
-                                    <div class="field">
-                                        <label class="field-label" for="attendanceStatus">Status</label>
-                                        <select id="attendanceStatus">
-                                            <option value="Present">Present</option>
-                                            <option value="Absent">Absent</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="actions-row">
-                                    <button type="submit" class="btn btn-primary">
-                                        <span>Save attendance</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <div>
-                                    <div class="card-title">Attendance history</div>
-                                    <div class="card-subtitle">View all recorded days for a selected employee.</div>
-                                </div>
-                            </div>
-
-                            <div class="form-grid-two" style="margin-bottom: 8px;">
-                                <div class="field">
-                                    <label class="field-label" for="historyEmp">Employee</label>
-                                    <select id="historyEmp">
-                                        <option value="">Select employee</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th style="width: 40%;">Date</th>
-                                        <th style="width: 40%;">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="attendanceTable">
-                                    <tr>
-                                        <td colspan="2" class="table-empty">Select an employee to see their attendance history.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Dept</th>
+                </tr>
+            </thead>
+            <tbody id="empTable">
+            </tbody>
+        </table>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        const API_URL = "https://hrms-backend-ulon.onrender.com";
+        const form = document.getElementById('addEmpForm');
+        const empTable = document.getElementById('empTable');
 
-        // State
-        let employees = [];
-
-        // Elements
-        const pageTitleEl = document.getElementById('pageTitle');
-        const pageSubtitleEl = document.getElementById('pageSubtitle');
-
-        const navButtons = document.querySelectorAll('.nav-button');
-        const sections = {
-            dashboard: document.getElementById('dashboardSection'),
-            employees: document.getElementById('employeesSection'),
-            attendance: document.getElementById('attendanceSection')
+        const getEmps = () => {
+            axios.get("http://localhost:8000/employees")
+                .then(res => {
+                    empTable.innerHTML = '';
+                    res.data.forEach(e => {
+                        const row = `<tr><td>${e.id}</td><td>${e.name}</td><td>${e.email}</td><td>${e.department}</td></tr>`;
+                        empTable.innerHTML += row;
+                    });
+                })
+                .catch(err => console.log("Server error!"));
         };
 
-        const metricEmployeesEl = document.getElementById('metricEmployees');
-        const metricDepartmentsEl = document.getElementById('metricDepartments');
-        const metricTodayDateEl = document.getElementById('metricTodayDate');
-        const recentEmployeesBody = document.getElementById('recentEmployeesBody');
-        const employeeCountTag = document.getElementById('employeeCountTag');
-
-        const empTableBody = document.getElementById('empTable');
-        const addEmpForm = document.getElementById('addEmpForm');
-
-        const attendanceForm = document.getElementById('attendanceForm');
-        const attendanceEmpSelect = document.getElementById('attendanceEmp');
-        const attendanceDateInput = document.getElementById('attendanceDate');
-        const attendanceStatusSelect = document.getElementById('attendanceStatus');
-        const attendanceTableBody = document.getElementById('attendanceTable');
-        const historyEmpSelect = document.getElementById('historyEmp');
-
-        const quickAddEmployeeBtn = document.getElementById('quickAddEmployee');
-        const quickMarkAttendanceBtn = document.getElementById('quickMarkAttendance');
-
-        // Navigation handling
-        function setPage(page) {
-            navButtons.forEach(btn => {
-                const target = btn.getAttribute('data-page');
-                btn.classList.toggle('active', target === page);
-            });
-
-            Object.entries(sections).forEach(([key, section]) => {
-                section.classList.toggle('active', key === page);
-            });
-
-            if (page === 'dashboard') {
-                pageTitleEl.textContent = 'Dashboard';
-                pageSubtitleEl.textContent = 'Snapshot of your workforce today.';
-            } else if (page === 'employees') {
-                pageTitleEl.textContent = 'Employees';
-                pageSubtitleEl.textContent = 'Create, update and review your employee directory.';
-            } else if (page === 'attendance') {
-                pageTitleEl.textContent = 'Attendance';
-                pageSubtitleEl.textContent = 'Record daily presence and view individual history.';
-            }
-        }
-
-        navButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const page = btn.getAttribute('data-page');
-                setPage(page);
-            });
-        });
-
-        quickAddEmployeeBtn.addEventListener('click', () => setPage('employees'));
-        quickMarkAttendanceBtn.addEventListener('click', () => setPage('attendance'));
-
-        // Helpers
-        function formatDateISO(date) {
-            return date.toISOString().split('T')[0];
-        }
-
-        function setToday() {
-            const now = new Date();
-            metricTodayDateEl.textContent = now.toLocaleDateString(undefined, {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric'
-            });
-            attendanceDateInput.value = formatDateISO(now);
-        }
-
-        function updateDashboardMetrics() {
-            metricEmployeesEl.textContent = employees.length.toString();
-
-            const departments = new Set(employees.map(e => e.department).filter(Boolean));
-            metricDepartmentsEl.textContent = departments.size.toString();
-
-            employeeCountTag.textContent = `${employees.length} employee${employees.length === 1 ? '' : 's'}`;
-        }
-
-        function renderEmployeeTable() {
-            if (!employees.length) {
-                empTableBody.innerHTML = '<tr><td colspan="5" class="table-empty">No employees found yet.</td></tr>';
-                return;
-            }
-
-            empTableBody.innerHTML = employees.map(emp => `
-                <tr>
-                    <td>${emp.id}</td>
-                    <td>${emp.name}</td>
-                    <td>${emp.email}</td>
-                    <td>${emp.department || '-'}</td>
-                    <td>
-                        <button class="btn btn-danger" data-delete="${emp.id}">Delete</button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function renderRecentEmployees() {
-            if (!employees.length) {
-                recentEmployeesBody.innerHTML = '<tr><td colspan="4" class="table-empty">No employees yet. Add your first team member from the Employees tab.</td></tr>';
-                return;
-            }
-
-            const recent = [...employees].slice(-5).reverse();
-
-            recentEmployeesBody.innerHTML = recent.map(emp => `
-                <tr>
-                    <td>${emp.id}</td>
-                    <td>${emp.name}</td>
-                    <td>${emp.email}</td>
-                    <td>${emp.department || '-'}</td>
-                </tr>
-            `).join('');
-        }
-
-        function populateEmployeeSelects() {
-            const options = ['<option value="">Select employee</option>']
-                .concat(employees.map(emp => `<option value="${emp.id}">${emp.name} (${emp.id})</option>`));
-
-            attendanceEmpSelect.innerHTML = options.join('');
-            historyEmpSelect.innerHTML = options.join('');
-        }
-
-        // API calls
-        function loadEmployees() {
-            axios.get(`${API_URL}/employees`)
-                .then(res => {
-                    employees = res.data || [];
-                    updateDashboardMetrics();
-                    renderEmployeeTable();
-                    renderRecentEmployees();
-                    populateEmployeeSelects();
-                })
-                .catch(err => {
-                    console.error('Error fetching employees', err);
-                    empTableBody.innerHTML = '<tr><td colspan="5" class="table-empty">Unable to load employees. Check backend connection.</td></tr>';
-                    recentEmployeesBody.innerHTML = '<tr><td colspan="4" class="table-empty">Unable to load data. Check backend connection.</td></tr>';
-                });
-        }
-
-        function addEmployee(payload) {
-            return axios.post(`${API_URL}/employees`, payload);
-        }
-
-        function deleteEmployee(empId) {
-            return axios.delete(`${API_URL}/employees/${empId}`);
-        }
-
-        function markAttendance(payload) {
-            return axios.post(`${API_URL}/attendance`, payload);
-        }
-
-        function loadAttendance(empId) {
-            return axios.get(`${API_URL}/attendance/${empId}`);
-        }
-
-        // Event listeners
-        addEmpForm.addEventListener('submit', (e) => {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
+            const id = document.getElementById('id').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const dept = document.getElementById('dept').value;
 
-            const id = document.getElementById('id').value.trim();
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const dept = document.getElementById('dept').value.trim();
-
-            if (!id || !name || !email || !dept) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            addEmployee({ id, name, email, department: dept })
+            axios.post("http://localhost:8000/employees", { id, name, email, department: dept })
                 .then(() => {
-                    alert('Employee added successfully.');
-                    addEmpForm.reset();
-                    loadEmployees();
+                    alert("Success!");
+                    form.reset();
+                    getEmps();
                 })
-                .catch(err => {
-                    const msg = err?.response?.data?.detail || 'Could not add employee. Please check details.';
-                    alert(msg);
-                });
+                .catch(err => alert("Error: " + err.response.data.detail));
         });
 
-        empTableBody.addEventListener('click', (e) => {
-            const btn = e.target.closest('button[data-delete]');
-            if (!btn) return;
-
-            const empId = btn.getAttribute('data-delete');
-            if (!empId) return;
-
-            if (!confirm(`Delete employee ${empId}? This cannot be undone.`)) return;
-
-            deleteEmployee(empId)
-                .then(() => {
-                    loadEmployees();
-                })
-                .catch(() => {
-                    alert('Failed to delete employee. Please try again.');
-                });
-        });
-
-        attendanceForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const empId = attendanceEmpSelect.value;
-            const date = attendanceDateInput.value;
-            const status = attendanceStatusSelect.value;
-
-            if (!empId || !date) {
-                alert('Please select an employee and date.');
-                return;
-            }
-
-            markAttendance({ emp_id: empId, date, status })
-                .then(() => {
-                    alert('Attendance recorded.');
-                    if (historyEmpSelect.value === empId) {
-                        fetchAttendanceHistory(empId);
-                    }
-                })
-                .catch(() => {
-                    alert('Could not record attendance. Please try again.');
-                });
-        });
-
-        function fetchAttendanceHistory(empId) {
-            if (!empId) {
-                attendanceTableBody.innerHTML = '<tr><td colspan="2" class="table-empty">Select an employee to see their attendance history.</td></tr>';
-                return;
-            }
-
-            loadAttendance(empId)
-                .then(res => {
-                    const records = res.data || [];
-                    if (!records.length) {
-                        attendanceTableBody.innerHTML = '<tr><td colspan="2" class="table-empty">No attendance records for this employee yet.</td></tr>';
-                        return;
-                    }
-
-                    attendanceTableBody.innerHTML = records.map(r => `
-                        <tr>
-                            <td>${r.date}</td>
-                            <td>
-                                <span class="status-pill ${r.status === 'Present' ? 'status-present' : 'status-absent'}">
-                                    ${r.status}
-                                </span>
-                            </td>
-                        </tr>
-                    `).join('');
-                })
-                .catch(() => {
-                    attendanceTableBody.innerHTML = '<tr><td colspan="2" class="table-empty">Unable to load attendance history.</td></tr>';
-                });
-        }
-
-        historyEmpSelect.addEventListener('change', (e) => {
-            const empId = e.target.value;
-            fetchAttendanceHistory(empId);
-        });
-
-        // Initial load
-        setToday();
-        loadEmployees();
+        getEmps();
     </script>
 </body>
 </html>
